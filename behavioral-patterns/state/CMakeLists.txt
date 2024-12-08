@@ -14,18 +14,7 @@ include_directories(
     ${PROJECT_SOURCE_DIR}
 )
 
-set(SOURCE_FILES
-    main.cpp
-    context.cpp
-    state_case/state_home.cpp
-    state_case/state_repair_aborting.cpp
-    state_case/state_repaired.cpp
-    state_case/state_repairing.cpp
-    state_case/state_repair_pausing.cpp
-    state_case/state_scan_aborting.cpp
-    state_case/state_scanned.cpp
-    state_case/state_scanning.cpp
-    state_case/state_scan_pausing.cpp
-)
+aux_source_directory(. SOURCE_FILES)
+aux_source_directory(state_case SOURCE_FILES)
 
 add_executable(state ${SOURCE_FILES})

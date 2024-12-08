@@ -14,12 +14,8 @@ include_directories(
     ${PROJECT_SOURCE_DIR}
 )
 
-set(SOURCE_FILES
-    main.cpp
-    factory/factory_a.cpp
-    factory/factory_b.cpp
-    product/product_a.cpp
-    product/product_b.cpp
-)
+aux_source_directory(. SOURCE_FILES)
+aux_source_directory(product SOURCE_FILES)
+aux_source_directory(factory SOURCE_FILES)
 
 add_executable(factory_method ${SOURCE_FILES})
