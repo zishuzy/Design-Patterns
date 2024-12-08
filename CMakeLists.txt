@@ -11,4 +11,5 @@ message(STATUS "Set ROOT_PATH: ${ROOT_PATH}")
 include_directories(${PROJECT_SOURCE_DIR})
 
 add_subdirectory(creational-patterns)
+add_subdirectory(structural-patterns)
 add_subdirectory(behavioral-patterns)
