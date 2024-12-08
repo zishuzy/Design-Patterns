@@ -1,3 +1,6 @@
+# 生成 compile_commands.json 文件
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 # 检查是否已经包含过该文件
 if(NOT DEFINED DEMO_PLATFORM_CONFIG_EXECUTED)
     # 在这里执行配置操作
@@ -5,9 +8,6 @@ if(NOT DEFINED DEMO_PLATFORM_CONFIG_EXECUTED)
 
     # 设置一个变量标记这个文件已经执行过
     set(DEMO_PLATFORM_CONFIG_EXECUTED TRUE CACHE INTERNAL "Indicates that platform_config.cmake has been executed")
-
-    # 生成 compile_commands.json 文件
-    set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
     # 设置 C 标准
     if(NOT DEFINED CMAKE_C_STANDARD)
