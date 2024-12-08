@@ -1,51 +1,17 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.12)
 
 project(state)
 
-if(NOT DEFINED CMAKE_C_STANDARD)
-    message("Set CMAKE_C_STANDARD as 11")
-    set(CMAKE_C_STANDARD 11)
-    set(CMAKE_C_STANDARD_REQUIRED ON)
+if(NOT DEFINED ROOT_PATH)
+    set(ROOT_PATH ${PROJECT_SOURCE_DIR}/../..)
+    message(STATUS "Set ROOT_PATH: ${ROOT_PATH}")
 endif()
 
-if(NOT DEFINED CMAKE_CXX_STANDARD)
-    message("Set CMAKE_C_STANDARD as 20")
-    set(CMAKE_CXX_STANDARD 20)
-    set(CMAKE_CXX_STANDARD_REQUIRED ON)
-endif()
-
-IF(CMAKE_SYSTEM_NAME MATCHES "Linux")
-    message(STATUS "current platform: Linux ")
-ELSEIF(CMAKE_SYSTEM_NAME MATCHES "Windows")
-    message(STATUS "current platform: Windows")
-ELSEIF(CMAKE_SYSTEM_NAME MATCHES "Darwin")
-    message(STATUS "current platform: Mac os x")
-    find_program(LLVM_CLANG clang HINTS /opt/homebrew/opt/llvm/bin /usr/local/opt/llvm/bin)
-    find_program(LLVM_CLANGPP clang++ HINTS /opt/homebrew/opt/llvm/bin /usr/local/opt/llvm/bin)
-
-    if(LLVM_CLANG AND LLVM_CLANGPP)
-        SET(CMAKE_C_COMPILER ${LLVM_CLANG})
-        SET(CMAKE_CXX_COMPILER ${LLVM_CLANGPP})
-    else()
-        message(WARNING "LLVM compiler not found, using default compiler")
-    endif()
-ELSE()
-    message(STATUS "other platform: ${CMAKE_SYSTEM_NAME}")
-ENDIF(CMAKE_SYSTEM_NAME MATCHES "Linux")
-
-set(CMAKE_BUILD_TYPE "Debug")
-
-find_package(GTest REQUIRED)
+include(${ROOT_PATH}/cmake/platform_config.cmake)
 
 include_directories(
-    ${INC_PATH_EXTRA}
+    ${ROOT_PATH}
     ${PROJECT_SOURCE_DIR}
-    ${PROJECT_SOURCE_DIR}/..
-    ${PROJECT_SOURCE_DIR}/../..
-)
-
-link_directories(
-    ${LINK_PATH_EXTRA}
 )
 
 set(SOURCE_FILES
@@ -63,6 +29,3 @@ set(SOURCE_FILES
 )
 
 add_executable(state ${SOURCE_FILES})
-
-# add_executable(state_gtest ${SOURCE_FILES})
-# target_link_libraries(state_gtest GTest::GTest GTest::gmock)

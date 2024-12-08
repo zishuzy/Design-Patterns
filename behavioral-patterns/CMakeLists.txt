@@ -1,24 +1,16 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.12)
 
-project(test_list)
+project(behavioral-patterns)
 
-if(NOT DEFINED CMAKE_C_STANDARD)
-    message("Set CMAKE_C_STANDARD as 11")
-    set(CMAKE_C_STANDARD 11)
-    set(CMAKE_C_STANDARD_REQUIRED ON)
+if(NOT DEFINED ROOT_PATH)
+    set(ROOT_PATH ${PROJECT_SOURCE_DIR}/..)
+    message(STATUS "Set ROOT_PATH: ${ROOT_PATH}")
 endif()
 
-if(NOT DEFINED CMAKE_CXX_STANDARD)
-    message("Set CMAKE_C_STANDARD as 20")
-    set(CMAKE_CXX_STANDARD 20)
-    set(CMAKE_CXX_STANDARD_REQUIRED ON)
-endif()
-
-set(CMAKE_BUILD_TYPE "Debug")
+include(${ROOT_PATH}/cmake/platform_config.cmake)
 
 include_directories(
-    ${PROJECT_SOURCE_DIR}
-    ${PROJECT_SOURCE_DIR}/..
+    ${ROOT_PATH}
 )
 
 add_subdirectory(state)
