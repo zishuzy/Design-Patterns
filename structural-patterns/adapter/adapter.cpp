@@ -1,5 +1,7 @@
 #include "adapter.h"
 
+#include <algorithm>
+
 namespace adapter
 {
 CAdapter::CAdapter(CAdaptee *adaptee)

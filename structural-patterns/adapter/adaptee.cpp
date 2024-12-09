@@ -1,5 +1,7 @@
 #include "adaptee.h"
 
+#include <algorithm>
+
 namespace adapter
 {
 std::string CAdaptee::SpecificRequest()

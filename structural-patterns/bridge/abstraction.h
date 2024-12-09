@@ -13,6 +13,8 @@
 
 #include "implementation.hpp"
 
+#include <memory>
+
 namespace bridge
 {
 
