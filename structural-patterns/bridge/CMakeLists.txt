@@ -7,9 +7,7 @@ if(NOT DEFINED ROOT_PATH)
     message(STATUS "Set ROOT_PATH: ${ROOT_PATH}")
 endif()
 
-if(NOT DEFINED PLATFORM_CONFIG_CMAKE)
-    include(${ROOT_PATH}/cmake/platform_config.cmake)
-endif()
+include(${ROOT_PATH}/cmake/platform_config.cmake)
 
 include_directories(
     ${ROOT_PATH}
