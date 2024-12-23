@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.12)
 
-project(structural-patterns)
+project(decorator)
 
 if(NOT DEFINED ROOT_PATH)
-    set(ROOT_PATH ${PROJECT_SOURCE_DIR}/..)
+    set(ROOT_PATH ${PROJECT_SOURCE_DIR}/../..)
     message(STATUS "Set ROOT_PATH: ${ROOT_PATH}")
 endif()
 
@@ -14,7 +14,6 @@ include_directories(
     ${PROJECT_SOURCE_DIR}
 )
 
-add_subdirectory(adapter)
-add_subdirectory(bridge)
-add_subdirectory(composite)
-add_subdirectory(decorator)
+aux_source_directory(. SOURCE_FILES)
+
+add_executable(decorator ${SOURCE_FILES})
