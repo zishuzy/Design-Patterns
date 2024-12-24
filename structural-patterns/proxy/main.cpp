@@ -57,6 +57,45 @@ public:
     }
 };
 
+class Subject
+{
+public:
+    virtual void Request() const = 0;
+};
+
+class RealSubject : public Subject
+{
+public:
+    void Request() const override { std::cout << "RealSubject: Handling request.\n"; }
+};
+
+class Proxy : public Subject
+{
+private:
+    std::shared_ptr<RealSubject> real_subject_;
+
+    bool CheckAccess() const
+    {
+        std::cout << "Proxy: Checking access prior to firing a real request.\n";
+        return true;
+    }
+    void LogAccess() const { std::cout << "Proxy: Logging the time of request.\n"; }
+
+public:
+    Proxy(std::shared_ptr<RealSubject> real_subject)
+        : real_subject_(real_subject)
+    {
+    }
+
+    void Request() const override
+    {
+        if (this->CheckAccess()) {
+            this->real_subject_->Request();
+            this->LogAccess();
+        }
+    }
+};
+
 // 主函数
 int main()
 {
@@ -73,6 +112,16 @@ int main()
     // 再次显示图像，不需要重新加载
     std::cout << "Second display:" << std::endl;
     image->display();
+
+    std::cout << "\n" << std::endl;
+
+    std::cout << "Client: Executing the client code with a real subject:\n";
+    std::shared_ptr<RealSubject> real_subject = std::make_shared<RealSubject>();
+    real_subject->Request();
+    std::cout << "\n";
+    std::cout << "Client: Executing the same client code with a proxy:\n";
+    std::shared_ptr<Proxy> proxy = std::make_shared<Proxy>(real_subject);
+    proxy->Request();
 
     return 0;
 }
