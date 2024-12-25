@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.12)
 
-project(behavioral-patterns)
+project(mediator)
 
 if(NOT DEFINED ROOT_PATH)
-    set(ROOT_PATH ${PROJECT_SOURCE_DIR}/..)
+    set(ROOT_PATH ${PROJECT_SOURCE_DIR}/../..)
     message(STATUS "Set ROOT_PATH: ${ROOT_PATH}")
 endif()
 
@@ -14,8 +14,6 @@ include_directories(
     ${PROJECT_SOURCE_DIR}
 )
 
-add_subdirectory(state)
-add_subdirectory(chain-of-responsibility)
-add_subdirectory(command)
-add_subdirectory(iterator)
-add_subdirectory(mediator)
+aux_source_directory(. SOURCE_FILES)
+
+add_executable(mediator ${SOURCE_FILES})
