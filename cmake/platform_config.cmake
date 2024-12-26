@@ -14,9 +14,9 @@ if(NOT DEFINED PLATFORM_CONFIG_CMAKE)
 
     # 设置 C++ 标准
     if(NOT DEFINED CMAKE_CXX_STANDARD)
-        set(CMAKE_CXX_STANDARD 20)
+        set(CMAKE_CXX_STANDARD 23)
         set(CMAKE_CXX_STANDARD_REQUIRED ON)
-        message(STATUS "Set CMAKE_CXX_STANDARD as 20")
+        message(STATUS "Set CMAKE_CXX_STANDARD as 23")
     endif()
 
     # 设置构建类型
