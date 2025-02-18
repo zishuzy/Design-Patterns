@@ -18,3 +18,5 @@ aux_source_directory(. SOURCE_FILES)
 aux_source_directory(state_case SOURCE_FILES)
 
 add_executable(state ${SOURCE_FILES})
+
+add_executable(state_2 all_in_one.cpp)
